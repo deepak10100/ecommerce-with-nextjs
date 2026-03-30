@@ -10,7 +10,7 @@ export default function Navbar() {
       <h1 className="text-2xl font-semibold tracking-wide">Trexo</h1>
 
       {/* Menu */}
-      <ul className="hidden md:flex gap-8 text-sm font-medium">
+      <ul className=" md:flex gap-8 text-sm font-medium">
         <li>
           <Link href="/" className="border-b-2 border-white pb-1">
             HOME
