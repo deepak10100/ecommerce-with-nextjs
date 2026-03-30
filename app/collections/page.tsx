@@ -1,7 +1,10 @@
-import React from 'react'
+"use client"
+
+import  { useState } from 'react'
 import Image from 'next/image'
 
-function page() {
+function Page() {
+     const [searchQuery, setSearchQuery] = useState('');
      const products = [
     { id: 1, name: 'Blue Shirt', price: '$99', image: 'p1.png' },
     { id: 2, name: 'Pink Jacket', price: '$70', image: 'p2.png' },
@@ -9,12 +12,78 @@ function page() {
     { id: 4, name: 'White Plain T-Shirt', price: '$33', image: 'P4.png' },
     { id: 5, name: 'Goal T-Shirt', price: '$45', image: 'p5.png' }
   ];
+   
+
+  const handleClear = () => {
+    setSearchQuery('');
+  };
+
+  const handleSearch = (e:any) => {
+    e.preventDefault();
+    console.log('Search:', searchQuery);
+  };
 
   return (
     <>
     <div className="min-h-screen bg-white">
       {/* HEADER */}
+ <div className="w-full bg-gray-50 px-6 py-4">
+      <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
+        <div className="relative flex items-center">
+          {/* SEARCH INPUT */}
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full px-6 py-3 rounded-full border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-700 transition-colors text-base"
+          />
 
+          {/* SEARCH ICON */}
+          <button
+            type="submit"
+            className="absolute right-12 text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+
+          {/* CLEAR BUTTON (X) */}
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="absolute right-4 text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
+      </form>
+    </div>
       {/* MAIN CONTAINER */}
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex gap-12">
@@ -116,4 +185,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

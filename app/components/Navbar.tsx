@@ -35,7 +35,8 @@ export default function Navbar() {
 
       {/* Icons */}
       <div className="flex items-center gap-5">
-        <Search className="w-5 h-5 cursor-pointer" />
+       
+       <Link href={'/collections'}>  <Search className="w-5 h-5 cursor-pointer" /></Link>
        <Link href={'/login'}> <User className="w-5 h-5 cursor-pointer" /></Link>
 
         {/* Cart */}
